@@ -62,8 +62,14 @@
           <span class="menu-title">Rekomendas TK</span>
         </a>
       </li>
-       <li class="nav-item">
+        <li class="nav-item">
         <a class="nav-link" href="index.php?controller=Vikor&action=index">
+          <i class="mdi mdi-school menu-icon"></i>
+          <span class="menu-title">Preferensi</span>
+        </a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="index.php?controller=Hasil&action=index">
           <i class="mdi mdi-school menu-icon"></i>
           <span class="menu-title">Hasil</span>
         </a>
