@@ -51,21 +51,32 @@ class SekolahController
         include VIEW_PATH . 'sekolah/form.php';
     }
 
-    public function update()
-    {
-        $id = $_POST['id'];
-        $data = $_POST;
+   public function update() {
+    $id = $_POST['id'];
+    $data = $_POST;
 
-        $fotoName = $this->model->getById($id)['foto'];
-        if (isset($_FILES['foto']) && $_FILES['foto']['error'] === 0) {
-            $fotoName = basename($_FILES['foto']['name']);
-            move_uploaded_file($_FILES['foto']['tmp_name'], UPLOAD_PATH . $fotoName);
+    $sekolah = $this->model->getById($id);
+    $fotoLama = $sekolah['foto'];
+    $fotoName = $fotoLama;
+
+    // Jika ada foto baru diupload
+    if (isset($_FILES['foto']) && $_FILES['foto']['error'] === 0) {
+        // Hapus foto lama jika ada
+        if (!empty($fotoLama) && file_exists(UPLOAD_PATH . $fotoLama)) {
+            unlink(UPLOAD_PATH . $fotoLama);
         }
-        $data['foto'] = $fotoName;
 
-        $this->model->update($id, $data);
-        header("Location: index.php?controller=Sekolah&action=index");
+        // Simpan foto baru
+        $fotoName = basename($_FILES['foto']['name']);
+        move_uploaded_file($_FILES['foto']['tmp_name'], UPLOAD_PATH . $fotoName);
     }
+
+    $data['foto'] = $fotoName;
+
+    $this->model->update($id, $data);
+    header("Location: index.php?controller=Sekolah&action=index");
+}
+
 
 
     public function hapus()
