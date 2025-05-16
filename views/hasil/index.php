@@ -89,7 +89,6 @@
               <div class="col-md-4 grid-margin stretch-card">
                 <div class="card <?= $cardColors[$index] ?> card-img-holder text-white">
                   <div class="card-body">
-                    <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image">
                     <h4 class="font-weight-normal mb-3">
                       Peringkat #<?= ($index + 1) ?>
                       <i class="mdi mdi-trophy mdi-24px float-end"></i>
@@ -101,16 +100,12 @@
                     <p>
                       <i class="mdi mdi-star"></i> Nilai Q: <?= number_format($tk['nilai_q'], 5) ?>
                     </p>
-                    <a href="index.php?controller=Hasil&action=detail&id=<?= $tk['sekolah_id'] ?>" class="btn btn-light btn-sm text-dark mt-3">
-                      <i class="mdi mdi-eye"></i> Detail
-                    </a>
                   </div>
                 </div>
               </div>
               <?php endforeach; ?>
             </div>
 
-            <!-- Complete Results Table -->
             <div class="row">
               <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
@@ -127,7 +122,6 @@
                             <th>Nilai S</th>
                             <th>Nilai R</th>
                             <th>Nilai Q</th>
-                            <th>Aksi</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -139,11 +133,6 @@
                             <td><?= number_format($tk['nilai_s'], 5) ?></td>
                             <td><?= number_format($tk['nilai_r'], 5) ?></td>
                             <td><b><?= number_format($tk['nilai_q'], 5) ?></b></td>
-                            <td>
-                              <a href="index.php?controller=Hasil&action=detail&id=<?= $tk['sekolah_id'] ?>" class="btn btn-outline-primary btn-sm">
-                                <i class="mdi mdi-eye"></i> Detail
-                              </a>
-                            </td>
                           </tr>
                           <?php endforeach; ?>
                         </tbody>
@@ -154,7 +143,6 @@
               </div>
             </div>
 
-            <!-- Criteria Values for Each School -->
             <div class="row">
               <div class="col-12 grid-margin">
                 <div class="card">
@@ -211,7 +199,6 @@
               </div>
             </div>
 
-            <!-- User Preferences and Weights -->
             <div class="row">
               <div class="col-md-6 grid-margin stretch-card">
                 <div class="card">
@@ -293,7 +280,7 @@
                               $bobotAkhir = $b['bobot'];
                               foreach ($preferensi as $p) {
                                 if ($p['kriteria_id'] == $b['kriteria_id']) {
-                                  $scale = $p['nilai_preferensi'] / 3; // Scale based on preference (3 is middle value)
+                                  $scale = $p['nilai_preferensi'] / 3;
                                   $bobotAkhir = $b['bobot'] * $scale;
                                   break;
                                 }
@@ -311,26 +298,6 @@
               </div>
             </div>
           <?php endif; ?>
-
-          <!-- Explanation Section -->
-          <div class="row">
-            <div class="col-md-12 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <h4 class="card-title">Penjelasan Hasil</h4>
-                  <p>Hasil di atas merupakan rekomendasi Taman Kanak-kanak berdasarkan perhitungan dengan metode VIKOR yang dioptimasi dengan AHP. Penjelasan dari nilai-nilai yang ditampilkan:</p>
-                  
-                  <ul class="list-arrow">
-                    <li><strong>Nilai S</strong> - Merupakan nilai utility measure yang mengukur jarak dari solusi ideal untuk semua kriteria (semakin kecil semakin baik)</li>
-                    <li><strong>Nilai R</strong> - Merupakan nilai regret measure yang mengukur jarak maksimum dari solusi ideal untuk kriteria terburuk (semakin kecil semakin baik)</li>
-                    <li><strong>Nilai Q</strong> - Merupakan indeks VIKOR yang merepresentasikan kesepakatan antara utility group dan individual regret (semakin kecil semakin baik)</li>
-                  </ul>
-                  
-                  <p>Rekomendasi TK diurutkan berdasarkan nilai Q dari yang terkecil (terbaik) hingga yang terbesar. TK dengan peringkat #1 merupakan rekomendasi terbaik berdasarkan preferensi yang Anda tetapkan.</p>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>

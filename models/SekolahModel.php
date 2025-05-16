@@ -45,9 +45,11 @@ class SekolahModel
 
     public function update($id, $data)
     {
+        $fotoName = $data['foto'];
+
         $stmt = $this->db->prepare("UPDATE sekolah_tk SET nama_tk=?, alamat=?, deskripsi=?, kontak=?, email=?, latitude=?, longitude=?, foto=? WHERE id=?");
         $stmt->bind_param(
-            "ssssssddi",
+            "ssssssdsi",
             $data['nama_tk'],
             $data['alamat'],
             $data['deskripsi'],
@@ -55,13 +57,13 @@ class SekolahModel
             $data['email'],
             $data['latitude'],
             $data['longitude'],
-            $data['foto'],
+            $fotoName,
             $id
         );
 
-
         return $stmt->execute();
     }
+
 
     public function delete($id)
     {
