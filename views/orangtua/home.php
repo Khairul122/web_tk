@@ -10,7 +10,9 @@
         <div class="content-wrapper">
           <div class="row">
             <div class="col-sm-12">
-
+              <h4 style="text-align: center; font-size: 30px;">
+                Selamat Datang, <?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : 'Pengguna'; ?>
+              </h4>
             </div>
           </div>
         </div>
