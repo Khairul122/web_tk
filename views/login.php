@@ -30,6 +30,10 @@
                 <div class="d-grid">
                     <button type="submit" class="btn btn-primary">Masuk</button>
                 </div>
+                <br>
+                 <div class="d-grid">
+                    <a href="index.php?controller=Registrasi&action=form" class="btn btn-outline-secondary">Daftar Sebagai Orang Tua</a>
+                  </div>
             </form>
         </div>
     </div>
